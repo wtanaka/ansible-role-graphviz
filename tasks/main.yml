@@ -7,11 +7,5 @@
 - include: epel.yml
   when: ansible_distribution == 'CentOS'
 
-- include: Debian.yml
-  when: ansible_os_family == 'Debian'
-
-- include: RedHat.yml
-  when: ansible_os_family == 'RedHat'
-
 # Install graphviz
 - include: install_package_names.yml
