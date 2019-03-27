@@ -1,18 +1,34 @@
 language: ruby
 rvm:
 - 2.2
-- 2.1
-- 2.0
+#- 2.1
+#- 2.0
 - 1.9.3
+env:
+- ANSIBLE_VERSIONS=1.4 DOCKER_IMAGES=debian:8
+- ANSIBLE_VERSIONS=1.4 DOCKER_IMAGES=fedora:20
+- ANSIBLE_VERSIONS=1.4 DOCKER_IMAGES=fedora:24
+- ANSIBLE_VERSIONS=1.4 DOCKER_IMAGES=ubuntu:12.04
+- ANSIBLE_VERSIONS=1.4 DOCKER_IMAGES=ubuntu:16.04
+- ANSIBLE_VERSIONS=1.5.4 DOCKER_IMAGES=debian:8
+- ANSIBLE_VERSIONS=1.5.4 DOCKER_IMAGES=fedora:20
+- ANSIBLE_VERSIONS=1.5.4 DOCKER_IMAGES=fedora:24
+- ANSIBLE_VERSIONS=1.5.4 DOCKER_IMAGES=ubuntu:12.04
+- ANSIBLE_VERSIONS=1.5.4 DOCKER_IMAGES=ubuntu:16.04
+- ANSIBLE_VERSIONS=1.9.2 DOCKER_IMAGES=debian:8
+- ANSIBLE_VERSIONS=1.9.2 DOCKER_IMAGES=fedora:20
+- ANSIBLE_VERSIONS=1.9.2 DOCKER_IMAGES=fedora:24
+- ANSIBLE_VERSIONS=1.9.2 DOCKER_IMAGES=ubuntu:12.04
+- ANSIBLE_VERSIONS=1.9.2 DOCKER_IMAGES=ubuntu:16.04
+- ANSIBLE_VERSIONS=2.1.0.0 DOCKER_IMAGES=debian:8
+- ANSIBLE_VERSIONS=2.1.0.0 DOCKER_IMAGES=fedora:20
+- ANSIBLE_VERSIONS=2.1.0.0 DOCKER_IMAGES=fedora:24
+- ANSIBLE_VERSIONS=2.1.0.0 DOCKER_IMAGES=ubuntu:12.04
+- ANSIBLE_VERSIONS=2.1.0.0 DOCKER_IMAGES=ubuntu:16.04
 services:
 - docker
 script:
-- >
-  wget -O- bit.ly/ansibletest | env
-  ANSIBLE_VERSIONS="1.4 1.5.4 1.9.2 2.1.0.0"
-  DOCKER_IMAGES="debian:7 fedora:20 fedora:24 ubuntu:12.04
-  ubuntu:16.04"
-  sh -x
+- wget -O- bit.ly/ansibletest | sh -x
 after_failure:
 - cat role-tester-ansible-master/.kitchen.yml
 - cat role-tester-ansible-master/.kitchen.local.yml
